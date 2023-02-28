@@ -1,0 +1,149 @@
+{
+	"compiler": {
+		"version": "0.8.15+commit.e14f2714"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "key",
+						"type": "bytes"
+					}
+				],
+				"name": "extractKeyComponents",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "key",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "sig",
+						"type": "bytes"
+					}
+				],
+				"name": "verify",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"extractKeyComponents(bytes)": {
+					"details": "Extracts modulus and exponent (respectively) from a DER-encoded RSA public key",
+					"params": {
+						"key": "A DER-encoded RSA public key"
+					}
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"src/utils/RSAHSA256Algorithm.sol": "RsaSha256Algorithm"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": [
+			":ds-test/=lib/forge-std/lib/ds-test/src/",
+			":forge-std/=lib/forge-std/src/"
+		]
+	},
+	"sources": {
+		"src/utils/Algorithm.sol": {
+			"keccak256": "0x7be41a83021b4967b7920ab19b269c9b5558ed599c636569dcfd393aaf029239",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://19a3a6e190024cc1c7cb7f906c17bd42fdc2231fe04cf073fe3602c637c4c36f",
+				"dweb:/ipfs/QmYmn19uvo9ZJSbrA51tNbqC8osqQSNXA6BqWDoyuuzK3B"
+			]
+		},
+		"src/utils/Asn1Decode.sol": {
+			"keccak256": "0xfe2784221b466429838803f472f39d9ad3b45152d2cd33007efccb203250defb",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://d20c6211ec94b9c089e6688e38a35a9b89547b5bd34e03a9d4c47bbc476d5183",
+				"dweb:/ipfs/QmfACm96A6jj3E1gfG2ceDRN132Nac8vFg6JktqAGJGqEW"
+			]
+		},
+		"src/utils/BytesUtils.sol": {
+			"keccak256": "0xe14c9ee05dde44f4f8e45aa89a0bca4d13cab43d623ce1b96285ebeb81759167",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://beb1a015cc9deaa839a5822a98728eb773ca49059a0b716a9138ce90b5fff9e4",
+				"dweb:/ipfs/QmdKp6gTknGPRwpvYSPiczeZCjPecHvk7V7H7s5vB4yCfq"
+			]
+		},
+		"src/utils/ModexpPrecompile.sol": {
+			"keccak256": "0x048e640a0434cdfedb6100031e7f40a96c1000535fb95f20c1d82064745de9ae",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://7f0354f002a5595bb4e410ff2bf130917560a1a35d3093a63815047926c17d08",
+				"dweb:/ipfs/QmSLG7wLBZCXVPuEUAQMoY26yZVdpf2zNcebCLHzFxaQHa"
+			]
+		},
+		"src/utils/RSAHSA256Algorithm.sol": {
+			"keccak256": "0x268d41201a09ba8377889ac069b569ff62fa702d869607692f45c94a62fb10b1",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://31d21318553522d6f39a92d539a53c0e06e1e56a91ad99b8a16fd4a811d7e425",
+				"dweb:/ipfs/QmUn5FWYwrsCsCv381hDvdiHTzQGYhKWqeYcpFgQ29t34S"
+			]
+		},
+		"src/utils/RSAVerify.sol": {
+			"keccak256": "0x336f0790bcac31790a2d66009ecfdaeae6d76b4ce4000410ee95f5fa84046cf6",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://7562d0d67677e11a0cbed3e4a482e06ebd882d47db358c024191401cdc985f90",
+				"dweb:/ipfs/QmfRQDbJ6iPn6QeW6Rr7aFpyiNH2KG4cZ2EnvUeekKU1M9"
+			]
+		}
+	},
+	"version": 1
+}

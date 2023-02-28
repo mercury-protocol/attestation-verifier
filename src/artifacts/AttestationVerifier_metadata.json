@@ -1,0 +1,230 @@
+{
+	"compiler": {
+		"version": "0.8.15+commit.e14f2714"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "_caCertPubKey",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "_rootCert",
+						"type": "bytes"
+					},
+					{
+						"internalType": "contract Algorithm",
+						"name": "_algo",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "caCertPubKey",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "rootCert",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "sha256WithRSAEncryption",
+				"outputs": [
+					{
+						"internalType": "contract Algorithm",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "attCert",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "attBody",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "attSig",
+						"type": "bytes"
+					}
+				],
+				"name": "verifyAttestation",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "cert",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "pubKey",
+						"type": "bytes"
+					}
+				],
+				"name": "verifyCert",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "certPubKey",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"author": "Lajos Deme, Mercury Labs",
+			"kind": "dev",
+			"methods": {
+				"verifyAttestation(bytes,bytes,bytes)": {
+					"details": "See IAttestationVerifier - verifyAttestation "
+				},
+				"verifyCert(bytes,bytes)": {
+					"details": "Parses and verifies a X.509 certificate.",
+					"params": {
+						"cert": "The X.509 certificate to verify.",
+						"pubKey": "The public key of the certificate that signed this certificate."
+					}
+				}
+			},
+			"stateVariables": {
+				"caCertPubKey": {
+					"details": "The public key of the Attestation Report Signing CA Certificate. All Attestation Report Signing certificates must be traced back to this root to be considered valid. To verify that the key is valid, first verify the rootCert using the official certificate downloaded from Intel, then verify this key against that certificate."
+				},
+				"okBytes": {
+					"details": "A succesfully verified enclave attestation report always contains the same bytes at the same position. These bytes stand for \"isvEnclaveQuoteStatus\":\"OK\" which is always part of the report.  "
+				},
+				"rootCert": {
+					"details": "The Attestation Report Signing CA Certificate. This certificate can be downloaded from Intel. To verify that this certificate is correct check that it is identical to the one retrieved from Intel."
+				},
+				"sha256WithRSAEncryption": {
+					"details": "The algorithm used for signing & verifying. "
+				}
+			},
+			"title": "Attestation Verifier",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"notice": "Helper contract for the verification of Intel SGX attestations.",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"src/AttestationVerifier.sol": "AttestationVerifier"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": [
+			":ds-test/=lib/forge-std/lib/ds-test/src/",
+			":forge-std/=lib/forge-std/src/"
+		]
+	},
+	"sources": {
+		"src/AttestationVerifier.sol": {
+			"keccak256": "0xde7de777f635a7141c902a453a2b307a1c74e657ab1b03e6465a2d82e88c50de",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://849da826d122da1367e7f3ef6c08c9bcfb2def42ccf70d4ebe56086dbf8451d6",
+				"dweb:/ipfs/Qmc6hmtacty29zzwsP1va4mrLQbfNqaQdPXnaUnGAdTRBd"
+			]
+		},
+		"src/IAttestationVerifier.sol": {
+			"keccak256": "0x78246bea4fc292f3bcd2563cdcd4c537659ec6e8c02451c56165885075116b91",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://98956fee7723b25148050978c4e4a49603ad3e4ca85c34e260924e87caa00fb7",
+				"dweb:/ipfs/QmcGFDms1PtzpkjUoCMxwe2ZWNSQPS1j8ytkmshRLJ1Xj9"
+			]
+		},
+		"src/utils/Algorithm.sol": {
+			"keccak256": "0x7be41a83021b4967b7920ab19b269c9b5558ed599c636569dcfd393aaf029239",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://19a3a6e190024cc1c7cb7f906c17bd42fdc2231fe04cf073fe3602c637c4c36f",
+				"dweb:/ipfs/QmYmn19uvo9ZJSbrA51tNbqC8osqQSNXA6BqWDoyuuzK3B"
+			]
+		},
+		"src/utils/Asn1Decode.sol": {
+			"keccak256": "0xfe2784221b466429838803f472f39d9ad3b45152d2cd33007efccb203250defb",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://d20c6211ec94b9c089e6688e38a35a9b89547b5bd34e03a9d4c47bbc476d5183",
+				"dweb:/ipfs/QmfACm96A6jj3E1gfG2ceDRN132Nac8vFg6JktqAGJGqEW"
+			]
+		},
+		"src/utils/BytesUtils.sol": {
+			"keccak256": "0xe14c9ee05dde44f4f8e45aa89a0bca4d13cab43d623ce1b96285ebeb81759167",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://beb1a015cc9deaa839a5822a98728eb773ca49059a0b716a9138ce90b5fff9e4",
+				"dweb:/ipfs/QmdKp6gTknGPRwpvYSPiczeZCjPecHvk7V7H7s5vB4yCfq"
+			]
+		},
+		"src/utils/DateTime.sol": {
+			"keccak256": "0xa9d9c82f52f00bca4e41f026ccb481aa631a2f151f46547cda3c52217c52b514",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://ff56b80cb1dba5ca2348506d3c8be50b2ceaf4e703e45c90e06f86682579ded9",
+				"dweb:/ipfs/QmVxxsVTWBdbYG7FZHEKsv1VRdzYBPxmxEsx35ryZFjmPh"
+			]
+		}
+	},
+	"version": 1
+}
