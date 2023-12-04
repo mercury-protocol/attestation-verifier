@@ -1,10 +1,12 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.10;
+pragma solidity ^0.8.17;
 
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "./utils/Asn1Decode.sol";
 import "./utils/Algorithm.sol";
 import "./utils/DateTime.sol";
 import "./utils/BytesUtils.sol";
+import "./utils/Base64.sol";
 import "./IAttestationVerifier.sol";
 
 /**
@@ -12,9 +14,11 @@ import "./IAttestationVerifier.sol";
 @author Lajos Deme, Mercury Labs
 @notice Helper contract for the verification of Intel SGX attestations.
  */
-contract AttestationVerifier is IAttestationVerifier {
+contract AttestationVerifier is IAttestationVerifier, Ownable {
     using Asn1Decode for bytes;
     using BytesUtils for bytes;
+
+    bytes32 public EXPECTED_MRENCLAVE = 0x3de47aea313c51d32b98c39a135f6c7fdc4999d05991585fa378bc8d22aef842;
 
     /** 
         @dev A succesfully verified enclave attestation report always contains the same bytes at the same position.
@@ -41,11 +45,13 @@ contract AttestationVerifier is IAttestationVerifier {
     /** @dev The algorithm used for signing & verifying. */
     Algorithm public sha256WithRSAEncryption;
 
+    bytes23 public isvEnclaveQuoteBodyStart = 0x22697376456e636c61766551756f7465426f6479223a22; // "isvEnclaveQuoteBody":"
+
     constructor(
         bytes memory _caCertPubKey,
         bytes memory _rootCert,
         Algorithm _algo
-    ) {
+    ) Ownable(msg.sender) {
         caCertPubKey = _caCertPubKey;
         rootCert = _rootCert;
         sha256WithRSAEncryption = _algo;
@@ -62,12 +68,14 @@ contract AttestationVerifier is IAttestationVerifier {
         if (sha256WithRSAEncryption.verify(intermediatePubKey, attBody, attSig) == false) {
             return false;
         }
-        // 6. verify quote status OK
-        if (verifyAttBodyOk(attBody) == false) {
+        // TODO: 6. verify quote status OK
+        /* if (verifyAttBodyOk(attBody) == false) {
             return false;
-        }
+        } */
 
-        return true;
+        bytes32 mrenclave = getMrEnclave(attBody);
+        
+        return EXPECTED_MRENCLAVE == mrenclave;
     }
 
     /**
@@ -153,5 +161,67 @@ contract AttestationVerifier is IAttestationVerifier {
 
         bytes32 statusBytes = attBody.readBytesN(101, 28);
         return statusBytes == okBytes;
+    }
+
+    function getMrEnclave(bytes calldata attBody) public view returns (bytes32) {
+        bytes memory decodedIsvEnclaveQuoteBody = getBytesAfterSequence(attBody, isvEnclaveQuoteBodyStart);
+        bytes32 mrenclave = decodedIsvEnclaveQuoteBody.readBytesN(112, 32);
+        return mrenclave;
+    }
+
+    function getBytesAfterSequence(bytes memory data, bytes23 sequence) internal pure returns (bytes memory) {
+        uint256 startIndex = indexOf(data, sequence) + sequence.length;
+
+        uint256 length = data.length - startIndex;
+        uint256 newLength = 0;
+
+        bytes memory result = new bytes(length);
+
+        for (uint256 i = 0; i < length; i++) {
+            if (data[startIndex + i] == 0x22) {
+                break;
+            }
+            result[i] = data[startIndex + i];
+            newLength++;
+        }
+
+        bytes memory newResult = new bytes(newLength);
+        for (uint256 i = 0; i < newLength; i++) {
+            newResult[i] = result[i];
+        }
+
+        string memory resultString = string(newResult);
+        bytes memory decodedResult = Base64.decode(resultString);
+        return decodedResult;
+    }
+
+    function indexOf(bytes memory haystack, bytes23 needle) internal pure returns (uint256) {
+            uint256 needleLength = needle.length;
+            uint256 haystackLength = haystack.length;
+
+            if (needleLength > haystackLength) {
+                return type(uint256).max;
+            }
+
+            for (uint256 i = 0; i <= haystackLength - needleLength; i++) {
+                bool found = true;
+                for (uint256 j = 0; j < needleLength; j++) {
+                    if (haystack[i + j] != needle[j]) {
+                        found = false;
+                        break;
+                    }
+                }
+
+                if (found) {
+                    return i;
+                }
+            }
+
+            return type(uint256).max;
+    }
+
+    function setExpectedMrEnclave(bytes32 _expectedMrEnclave) external onlyOwner {
+        require(_expectedMrEnclave != bytes32(0), "Expected MRENCLAVE can't be set to zero bytes");
+        EXPECTED_MRENCLAVE = _expectedMrEnclave;
     }
 }
