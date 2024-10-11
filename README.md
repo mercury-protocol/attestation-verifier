@@ -9,5 +9,3 @@ The verification process looks like this:
 
 Since these are all compute intensive steps, it is infeasible to use L1 for this purpose. With Scroll L2 we were able to achieve speed, scale, and reduced costs.
 
-Attestation Verifier on Scroll L2:    0xbb23a54dde3054b8A458E17781393F30ad228e6C  
-RSASHA256 Algorithm on Scroll L2:    0x58A77ef8Fdb36a891825aa04464beD1511832bE7  
