@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: GLP-3.0
 pragma solidity ^0.8.17;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -11,7 +11,7 @@ import "./IAttestationVerifier.sol";
 
 /**
 @title Attestation Verifier
-@author Lajos Deme, Mercury Labs
+@author Lajos Deme, Mercury Protocol
 @notice Helper contract for the verification of Intel SGX attestations.
  */
 contract AttestationVerifier is IAttestationVerifier, Ownable {
