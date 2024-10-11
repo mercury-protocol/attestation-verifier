@@ -1,0 +1,409 @@
+{
+	"compiler": {
+		"version": "0.8.22+commit.4fc1097e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "_caCertPubKey",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "_rootCert",
+						"type": "bytes"
+					},
+					{
+						"internalType": "contract Algorithm",
+						"name": "_algo",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "OwnableInvalidOwner",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "OwnableUnauthorizedAccount",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "EXPECTED_MRENCLAVE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "caCertPubKey",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "attBody",
+						"type": "bytes"
+					}
+				],
+				"name": "getMrEnclave",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "isvEnclaveQuoteBodyStart",
+				"outputs": [
+					{
+						"internalType": "bytes23",
+						"name": "",
+						"type": "bytes23"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "rootCert",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_expectedMrEnclave",
+						"type": "bytes32"
+					}
+				],
+				"name": "setExpectedMrEnclave",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "sha256WithRSAEncryption",
+				"outputs": [
+					{
+						"internalType": "contract Algorithm",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "attCert",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "attBody",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "attSig",
+						"type": "bytes"
+					}
+				],
+				"name": "verifyAttestation",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "cert",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "pubKey",
+						"type": "bytes"
+					}
+				],
+				"name": "verifyCert",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "certPubKey",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"author": "Lajos Deme, Mercury Labs",
+			"errors": {
+				"OwnableInvalidOwner(address)": [
+					{
+						"details": "The owner is not a valid owner account. (eg. `address(0)`)"
+					}
+				],
+				"OwnableUnauthorizedAccount(address)": [
+					{
+						"details": "The caller account is not authorized to perform an operation."
+					}
+				]
+			},
+			"kind": "dev",
+			"methods": {
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+				},
+				"transferOwnership(address)": {
+					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				},
+				"verifyAttestation(bytes,bytes,bytes)": {
+					"details": "See IAttestationVerifier - verifyAttestation "
+				},
+				"verifyCert(bytes,bytes)": {
+					"details": "Parses and verifies a X.509 certificate.",
+					"params": {
+						"cert": "The X.509 certificate to verify.",
+						"pubKey": "The public key of the certificate that signed this certificate."
+					}
+				}
+			},
+			"stateVariables": {
+				"caCertPubKey": {
+					"details": "The public key of the Attestation Report Signing CA Certificate. All Attestation Report Signing certificates must be traced back to this root to be considered valid. To verify that the key is valid, first verify the rootCert using the official certificate downloaded from Intel, then verify this key against that certificate."
+				},
+				"okBytes": {
+					"details": "A succesfully verified enclave attestation report always contains the same bytes at the same position. These bytes stand for \"isvEnclaveQuoteStatus\":\"OK\" which is always part of the report.  "
+				},
+				"rootCert": {
+					"details": "The Attestation Report Signing CA Certificate. This certificate can be downloaded from Intel. To verify that this certificate is correct check that it is identical to the one retrieved from Intel."
+				},
+				"sha256WithRSAEncryption": {
+					"details": "The algorithm used for signing & verifying. "
+				}
+			},
+			"title": "Attestation Verifier",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"notice": "Helper contract for the verification of Intel SGX attestations.",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"src/AttestationVerifier.sol": "AttestationVerifier"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": [
+			":@openzeppelin/=lib/openzeppelin-contracts/",
+			":ds-test/=lib/forge-std/lib/ds-test/src/",
+			":forge-std/=lib/forge-std/",
+			":forge-std/=lib/forge-std/src/"
+		]
+	},
+	"sources": {
+		"lib/openzeppelin-contracts/contracts/access/Ownable.sol": {
+			"keccak256": "0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8ed324d3920bb545059d66ab97d43e43ee85fd3bd52e03e401f020afb0b120f6",
+				"dweb:/ipfs/QmfEckWLmZkDDcoWrkEvMWhms66xwTLff9DDhegYpvHo1a"
+			]
+		},
+		"lib/openzeppelin-contracts/contracts/utils/Context.sol": {
+			"keccak256": "0x75a4ee64c68dbd5f38bddd06e664a64c8271b4caa554fb6f0607dfd672bb4bf3",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0c4e6cb30d3601e2f7af5af09e265508147cb275a8dcd99d6f7363645cc56867",
+				"dweb:/ipfs/QmNgFkoXNWoUbAyw71rr1sKQ95Rj2GfvYiWg79xEYDn2NY"
+			]
+		},
+		"src/AttestationVerifier.sol": {
+			"keccak256": "0x17ed37a44bafc75e377e3cceb94a7e90fc1418ba5f471564442d7a2a5f0d6664",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://40e99086450260377b6a1dd12d954dbe6542e6125d0dc0dde95e9ccb9bdc4eb7",
+				"dweb:/ipfs/QmeYHco42KHBqwyvnnoj1a5Jb8WbRA6WtdWaK3yfmE6XD1"
+			]
+		},
+		"src/IAttestationVerifier.sol": {
+			"keccak256": "0x78246bea4fc292f3bcd2563cdcd4c537659ec6e8c02451c56165885075116b91",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://98956fee7723b25148050978c4e4a49603ad3e4ca85c34e260924e87caa00fb7",
+				"dweb:/ipfs/QmcGFDms1PtzpkjUoCMxwe2ZWNSQPS1j8ytkmshRLJ1Xj9"
+			]
+		},
+		"src/utils/Algorithm.sol": {
+			"keccak256": "0x7be41a83021b4967b7920ab19b269c9b5558ed599c636569dcfd393aaf029239",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://19a3a6e190024cc1c7cb7f906c17bd42fdc2231fe04cf073fe3602c637c4c36f",
+				"dweb:/ipfs/QmYmn19uvo9ZJSbrA51tNbqC8osqQSNXA6BqWDoyuuzK3B"
+			]
+		},
+		"src/utils/Asn1Decode.sol": {
+			"keccak256": "0xfe2784221b466429838803f472f39d9ad3b45152d2cd33007efccb203250defb",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://d20c6211ec94b9c089e6688e38a35a9b89547b5bd34e03a9d4c47bbc476d5183",
+				"dweb:/ipfs/QmfACm96A6jj3E1gfG2ceDRN132Nac8vFg6JktqAGJGqEW"
+			]
+		},
+		"src/utils/Base64.sol": {
+			"keccak256": "0x805edfded2700ec8f810063006ec9665a45f79880fea57e139eea1bee0126c3b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1d80d1cb8d93eab77ecccc404170689b14e829f40ef8259b6a9098e6aa8a0dd6",
+				"dweb:/ipfs/QmYFbkrQZUgYp8vGgVuAd22ceMsTwsykVtCzNCcVSHMXkQ"
+			]
+		},
+		"src/utils/BytesUtils.sol": {
+			"keccak256": "0xe14c9ee05dde44f4f8e45aa89a0bca4d13cab43d623ce1b96285ebeb81759167",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://beb1a015cc9deaa839a5822a98728eb773ca49059a0b716a9138ce90b5fff9e4",
+				"dweb:/ipfs/QmdKp6gTknGPRwpvYSPiczeZCjPecHvk7V7H7s5vB4yCfq"
+			]
+		},
+		"src/utils/DateTime.sol": {
+			"keccak256": "0xa9d9c82f52f00bca4e41f026ccb481aa631a2f151f46547cda3c52217c52b514",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://ff56b80cb1dba5ca2348506d3c8be50b2ceaf4e703e45c90e06f86682579ded9",
+				"dweb:/ipfs/QmVxxsVTWBdbYG7FZHEKsv1VRdzYBPxmxEsx35ryZFjmPh"
+			]
+		}
+	},
+	"version": 1
+}
