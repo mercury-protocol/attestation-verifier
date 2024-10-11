@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: GNU GLP 3.0
 pragma solidity ^0.8.10;
 
 import "./utils/Asn1Decode.sol";
